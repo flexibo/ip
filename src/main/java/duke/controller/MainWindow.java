@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        //scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> scrollPane.setVvalue(1.0));
     }
 
     public void setCleo(Cleo d) {
@@ -63,15 +63,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, cleoImage, isError)
         );
-
         userInput.clear();
-
-        // Scroll to the bottom
-        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
-            scrollPane.setVvalue(1.0);
-        });
-
-        if (cleo.isExit()) { 
+        if (cleo.isExit()) {
             System.exit(0);
         }
     }
